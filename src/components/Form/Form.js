@@ -5,8 +5,14 @@ import { connect } from 'react-redux'
 
 class Form extends ReactComponent {
 
-    render() {
+state = {
+    description: '',
+    img_url: ''
+}
 
+
+
+    render() {
 
         return (
            
@@ -17,6 +23,14 @@ class Form extends ReactComponent {
             </form >
         )
     }   
+}
 
+const mapReduxState = (reduxState) => {
+    return {
+        reduxState
+    }
 }
 export default connect(mapReduxState)(Form);
+
+
+
