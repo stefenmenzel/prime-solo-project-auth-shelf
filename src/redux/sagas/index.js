@@ -17,7 +17,7 @@ export default function* rootSaga() {
     loginSaga(),
     registrationSaga(),
     userSaga(),
-    formSaga()
+    formSaga(),
     shelfSaga(),
   ]);
 }
