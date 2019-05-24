@@ -16,6 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import Form from '../Form/Form'; 
 
 import './App.css';
 import ListAllUsers from '../ListAllUsers/ListAllUsers';
@@ -55,6 +56,12 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+            {/* This will have a navigation to form portion.  */}
+            <ProtectedRoute
+              exact 
+              path="/form"
+              component={Form}
             />
             <ProtectedRoute
               exact
