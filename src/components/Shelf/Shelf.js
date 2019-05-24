@@ -6,6 +6,11 @@ class Shelf extends Component {
     componentDidMount() {
         this.props.dispatch({type: 'FETCH_SHELF_ITEMS'});
       }
+
+      handleDelete = (idToDelete) => {
+          console.log("Delete item id", idToDelete);
+          this.props.dispatch({type: 'DELETE_ITEMS', payload:{id:idToDelete}});
+      }
     render(){
         return(
             <div>
@@ -22,12 +27,14 @@ class Shelf extends Component {
                         </thead>
                         <tbody>
                         {this.props.userItems.map((item, i) => {
-                            //console.log('item.image_url', item.image_url);
+                            console.log('item.image_url', this.props.userItems);
+                            console.log('item id:', item.id);
                                 return(
-                                    <tr key={i} onClick={this.handleSubmit}><td>{item.username}</td>
+                                    <tr key={i} >
+                                        <td>{item.username}</td>
                                     <td><img alt ="" src={item.image_url} /></td>
                                     <td>{item.description}</td>
-                                    <td><button type="submit">Delete</button></td>
+                                    <td><button onClick={() => this.handleDelete(item.id)}>Delete</button></td>
                                     </tr>
                                 )    
 
@@ -42,7 +49,8 @@ class Shelf extends Component {
 
 }
 const mapStateToProps = reduxState => ({
-    userItems: reduxState.shelfReducer
+    userItems: reduxState.shelfReducer,
+    // userId: reduxState.shelfReducer.id
   });
 
 export default connect(mapStateToProps)(Shelf);
