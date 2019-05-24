@@ -6,7 +6,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchForm() {
     try { 
         yield axios.post('/addform', action.payload)
-        yield put({type: 'SET_FORM', payload: response.data})
+        yield put({type: 'FETCH_USER', payload: response.data})
     }
     catch(error) {
     console.log(error)
