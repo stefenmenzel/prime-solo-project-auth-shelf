@@ -8,8 +8,7 @@ class Form extends Component {
     // declaring state
 state = {
     description: '',
-    image_url: '', 
-    user_id: 0
+    image_url: ''
 }
 
  // handle submit

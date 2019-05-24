@@ -15,10 +15,10 @@ router.get('/', (req, res) => {
  * Add an item for the logged in user to the shelf
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
-   console.log('in post', req.body)
+   console.log('in post', req.user)
    let queryText = 
    `INSERT INTO "item" ("description", "image_url", "user_id") 
-    SELECT ($1, $2, $3)`; 
+    VALUES ($1, $2, $3)`; 
     pool.query(queryText, [req.body.description, req.body.image_url, req.user.id] )
     .then( () => {
         res.sendStatus(201); 

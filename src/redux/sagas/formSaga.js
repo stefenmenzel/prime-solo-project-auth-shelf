@@ -5,7 +5,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchForm(action) {
     try { 
-        yield axios.post('/addform', action.payload)
+        console.log(action.payload)
+        yield axios.post('/api/shelf', action.payload)
         yield put({type: 'FETCH_USER' })
     }
     catch(error) {
@@ -14,7 +15,7 @@ function* fetchForm(action) {
 }
 
 function* formSaga() {
-    yield takeLatest('SET_USER', fetchForm); 
+    yield takeLatest('ADD_IMAGE', fetchForm); 
 }
 
 
