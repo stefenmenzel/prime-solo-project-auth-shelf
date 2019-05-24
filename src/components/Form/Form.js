@@ -3,17 +3,18 @@ import { connect } from 'react-redux'
 
 
 
-class Form extends ReactComponent {
+class Form extends Component {
 
     // declaring state
 state = {
     description: '',
-    img_url: ''
+    image_url: '', 
+    user_id: 0
 }
 
  // handle submit
 handleSubmit = (event) => {
-event.preventDefault
+
 this.props.dispatch({type: "ADD_IMAGE", payload: this.state })
 }
 
@@ -27,7 +28,7 @@ handleDescription = (event) =>{
 // changes state for img_url
 handleImage = (event) => {
     this.setState({
-        img_url: event.target.value
+        image_url: event.target.value
     })
 }
 
@@ -35,7 +36,8 @@ handleImage = (event) => {
     render() {
 
         return (
-            // form for image_url and description
+            <div>
+             {/* form for image_url and description */}
         <form onSubmit={this.handleSubmit}>
             <input 
             onChange={this.handleDescription} 
@@ -50,6 +52,7 @@ handleImage = (event) => {
             onChange={this.handleImage} /> 
             <button type="submit" value="submit">Submit</button> 
         </form>
+        </div>
         )
     }   
 }
