@@ -14,7 +14,7 @@ state = {
  // handle submit
 handleSubmit = (event) => {
 event.preventDefault
-this.prop.dispatch({type: "ADD_IMAGE", payload: this.state })
+this.props.dispatch({type: "ADD_IMAGE", payload: this.state })
 }
 
 // changes state for description
