@@ -12,6 +12,23 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+router.get('/all-users', rejectUnauthenticated, (req, res) => {
+  let sqlQuery = `
+    SELECT "user".id, "user".username, count("item".user_id) FROM "item"
+    FULL OUTER JOIN "user" ON "user".id = "item".user_id
+    GROUP BY "user".id, "user".username
+    ORDER BY "count" desc;
+  `
+  pool.query(sqlQuery)
+  .then((result) => {
+    console.log('result from GET all users and amount of images request:', result.rows);
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log('Error in GET all users and amount of images uploaded:', error);
+    res.sendStatus(500);
+  })
+})
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
