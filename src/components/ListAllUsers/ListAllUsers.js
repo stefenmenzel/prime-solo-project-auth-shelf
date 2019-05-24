@@ -9,7 +9,26 @@ class ListAllUsers extends Component{
 
     render(){
         return(
-            <div><pre>{JSON.stringify(this.props.allUsers)}</pre></div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>username</th>
+                            <th>items uploaded</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.props.allUsers.map(user => {
+                            return (
+                                <tr key={user.id}>
+                                    <td>{user.username}</td>
+                                    <td>{user.count}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }

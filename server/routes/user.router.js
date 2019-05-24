@@ -14,10 +14,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.get('/all-users', rejectUnauthenticated, (req, res) => {
   let sqlQuery = `
-    SELECT "user".username, count("item".user_id) FROM "item"
+    SELECT "user".id, "user".username, count("item".user_id) FROM "item"
     FULL OUTER JOIN "user" ON "user".id = "item".user_id
-    GROUP BY "user".username
-    ORDER BY "count" DESC;
+    GROUP BY "user".id, "user".username
+    ORDER BY "count" desc;
   `
   pool.query(sqlQuery)
   .then((result) => {
